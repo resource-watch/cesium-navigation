@@ -2,10 +2,11 @@
     //.floating-vertical;
     position: absolute; 
     right: 30px;
-    top: 210px;
-    width: 30px;
-    border: 1px solid rgba(255,255,255,0.1);
+    top: 50px;
+    width: 40px;
+    border: 1px solid rgba(255,255,255,0.5);
     font-weight: 300;
+    z-index: 10;
     // avoids selection of text with rapid zooming
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -17,7 +18,11 @@
 
 .navigation-control {
     .clickable;
-    border-bottom: @floating-element-border;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+
+    &:hover {
+        background: rgba(255,255,255,0.2);
+    }
 }
 
 .naviagation-control:active {
@@ -32,7 +37,7 @@
 .navigation-control-icon-zoom-in {
     position: relative;
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     color: @floating-text-color;
     padding-bottom: 4px;
 }
@@ -40,15 +45,15 @@
 .navigation-control-icon-zoom-out {
     position: relative;
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     color: @floating-text-color;
 }
 
 .navigation-control-icon-reset {
     position: relative;
-    left: 10px;
+    left: 14px;
     width: 10px;
-    height: 10px;
+    height: 20px;
     fill: fade(@floating-text-color, 80%);
     padding-top: 6px;
     padding-bottom: 6px;
