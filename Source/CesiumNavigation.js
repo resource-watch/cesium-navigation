@@ -6,7 +6,6 @@ define([
     'Cesium/Core/Event',
     'KnockoutES5',
     'Core/registerKnockoutBindings',
-    'ViewModels/DistanceLegendViewModel',
     'ViewModels/NavigationViewModel'
 ], function (
         defined,
@@ -15,7 +14,6 @@ define([
         CesiumEvent,
         Knockout,
         registerKnockoutBindings,
-        DistanceLegendViewModel,
         NavigationViewModel)
 {
     'use strict';
@@ -32,10 +30,8 @@ define([
         this._onDestroyListeners = [];
     };
 
-    CesiumNavigation.prototype.distanceLegendViewModel = undefined;
     CesiumNavigation.prototype.navigationViewModel = undefined;
     CesiumNavigation.prototype.navigationDiv = undefined;
-    CesiumNavigation.prototype.distanceLegendDiv = undefined;
     CesiumNavigation.prototype.terria = undefined;
     CesiumNavigation.prototype.container = undefined;
     CesiumNavigation.prototype._onDestroyListeners = undefined;
@@ -46,22 +42,11 @@ define([
         {
             this.navigationViewModel.destroy();
         }
-        if (defined(this.distanceLegendViewModel))
-        {
-            this.distanceLegendViewModel.destroy();
-        }
-
         if (defined(this.navigationDiv))
         {
             this.navigationDiv.parentNode.removeChild(this.navigationDiv);
         }
         delete this.navigationDiv;
-
-        if (defined(this.distanceLegendDiv))
-        {
-            this.distanceLegendDiv.parentNode.removeChild(this.distanceLegendDiv);
-        }
-        delete this.distanceLegendDiv;
 
         if (defined(this.container))
         {
@@ -110,22 +95,7 @@ define([
         
            
           // Register custom Knockout.js bindings.  If you're not using the TerriaJS user interface, you can remove this.
-        registerKnockoutBindings();
-
-        if (!defined(this.terria.options.enableDistanceLegend) || this.terria.options.enableDistanceLegend)
-        {
-            this.distanceLegendDiv = document.createElement('div');
-             container.appendChild(this.distanceLegendDiv);
-            this.distanceLegendDiv.setAttribute("id", "distanceLegendDiv");
-            this.distanceLegendViewModel = DistanceLegendViewModel.create({
-                container: this.distanceLegendDiv,
-                terria: this.terria,
-                mapElement: container,
-                enableDistanceLegend: true
-            });
-           
-        }
-     
+        registerKnockoutBindings();     
 
         if ((!defined(this.terria.options.enableZoomControls) || this.terria.options.enableZoomControls) && (!defined(this.terria.options.enableCompass) || this.terria.options.enableCompass))
         {
